@@ -1,0 +1,7 @@
+
+torch
+transformers
+pillow
+scikit-learn
+tensorflow
+ultralytics
