@@ -24,4 +24,4 @@ def yolo_predict(image_path, model_path):
         print(f"Error in YOLO prediction: {e}")
         return Image.open(image_path), f"❌ Error: Could not process image with YOLO model ({str(e)})"
 
-print(yolo_predict("testing_images\hair_image.jpg","Hair.pt"))
+print(yolo_predict("testing_images/breast_cancer_positive.jpg","breast.pt"))
