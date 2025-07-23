@@ -1,7 +1,7 @@
 from ultralytics import YOLO
 
 # Load the trained YOLOv8 model
-model = YOLO("bone.pt")
+model = YOLO("spine.pt")
 
 # Get the class names
 class_names = model.names
@@ -31,4 +31,29 @@ Bone Fracture -
         9: Oblique fracture
         10: spiral fracture
 
+Breast -
+    Class Names :
+        0: cancer
+        1: normal
+
+Hair -
+    Class Names:
+        0: Alopecia areata
+        1: Head_Lice
+        2: Psoriasis
+        3: folliculitis
+
+Pneumonia -
+    Class Names:
+        0: pneumonia negative
+        1: pneumonia positive
+
+Spine -
+    Class Names:
+        0: L1
+        1: L2
+        2: L3
+        3: L4
+        4: L5
+        5: S1
 '''

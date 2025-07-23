@@ -1,6 +1,6 @@
 import gradio as gr
 import torch
-from PIL import Image
+from PIL import Image,ImageDraw, ImageFont
 import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 from transformers import CLIPProcessor, CLIPModel
@@ -89,7 +89,6 @@ YOLO_MODELS = {
     "Hair":"Hair.pt"
 }
 
-from PIL import Image
 
 def yolo_predict(image_path, model_path):
     try:
@@ -99,10 +98,30 @@ def yolo_predict(image_path, model_path):
         output_dir = results[0].save_dir
         output_img_path = os.path.join(output_dir, os.path.basename(image_path))
 
-        # Force save and reload as RGB
-        with Image.open(output_img_path) as img:
-            img = img.convert("RGB")
-            output_image = img.copy()  # Ensures no file handle lock
+        no_detections = results[0].boxes is None or len(results[0].boxes) == 0
+
+        if model_path == "bone.pt" and no_detections:
+            with Image.open(output_img_path) as img:
+                img = img.convert("RGB")
+                draw = ImageDraw.Draw(img)
+                width, height = img.size
+
+                # Draw box over entire image
+                draw.rectangle([(0, 0), (width, height)], outline="red", width=5)
+
+                # Try to load font
+                try:
+                    font = ImageFont.truetype("arial.ttf", 30)
+                except:
+                    font = ImageFont.load_default()
+
+                draw.text((10, 10), "Not fractured", fill="red", font=font)
+                output_image = img.copy()
+        else:
+            # There are detections
+            with Image.open(output_img_path) as img:
+                output_image = img.convert("RGB").copy()
+                output_image = img.copy()
 
         result_text = f"✅ YOLOv8 detection done using `{os.path.basename(model_path)}`\n"
         result_text += f"📸 Saved processed image to `{output_img_path}`"
@@ -112,8 +131,6 @@ def yolo_predict(image_path, model_path):
     except Exception as e:
         print(f"Error in YOLO prediction: {e}")
         return Image.open(image_path), f"❌ Error: Could not process image with YOLO model ({str(e)})"
-
-
 # ------------------ Unified Gradio Pipeline ------------------
 
 def pipeline(input_image):
