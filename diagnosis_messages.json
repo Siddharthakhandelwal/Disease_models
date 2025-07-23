@@ -1,0 +1,43 @@
+{
+  "brain_tumor": {
+    "0": "🧠 Diagnosis: Glioma detected. Gliomas are tumors that arise from glial cells in the brain and spinal cord. Early treatment is crucial—please consult a neurologist or oncologist for further evaluation.",
+    "1": "🧠 Diagnosis: Meningioma detected. Meningiomas are typically non-cancerous tumors that form on the brain’s outer membrane. Follow-up imaging and clinical correlation are recommended.",
+    "2": "🧠 Good News: No signs of a brain tumor were detected in this scan. If you have persistent symptoms, follow up with a medical professional for further investigation.",
+    "3": "🧠 Diagnosis: Pituitary tumor detected. These tumors occur near the base of the brain and may affect hormonal balance. An endocrinologist or neurosurgeon should be consulted."
+  },
+  "bone_fracture": {
+    "0": "🦴 Diagnosis: Avulsion Fracture. A small chunk of bone has been pulled off by a tendon or ligament. Usually seen in athletes—consult an orthopedic specialist for treatment options.",
+    "1": "🦴 Diagnosis: Comminuted Fracture. The bone has shattered into three or more pieces. This requires immediate medical attention and often surgical intervention.",
+    "2": "🦴 Diagnosis: Compression (Crush) Fracture. Common in the spine due to osteoporosis or trauma. Immediate evaluation is advised to avoid further complications.",
+    "3": "🦴 Diagnosis: Fracture Dislocation. A bone fracture accompanied by joint dislocation. This is a complex injury needing urgent orthopedic care.",
+    "4": "🦴 Diagnosis: Greenstick Fracture. A partial fracture common in children, where the bone bends and cracks. Usually treated with casting and rest.",
+    "5": "🦴 Diagnosis: Hairline Fracture. A small crack in the bone often caused by overuse. Requires rest, immobilization, and follow-up imaging.",
+    "6": "🦴 Diagnosis: Impacted Fracture. One fragment of bone is driven into another. This needs clinical management to prevent long-term damage.",
+    "7": "🦴 Diagnosis: Intra-articular Fracture. A fracture that extends into the joint space. Prompt orthopedic consultation is necessary to maintain joint function.",
+    "8": "🦴 Diagnosis: Fracture detected. Please consult an orthopedic specialist to determine the exact type and proper treatment.",
+    "9": "🦴 Diagnosis: Oblique Fracture. A clean diagonal break across the bone. This may require immobilization or surgical fixation.",
+    "10": "🦴 Diagnosis: Spiral Fracture. Caused by a twisting force, this type of fracture can be serious and requires professional care."
+  },
+  "Breast": {
+    "0": "🩺 Diagnosis: Signs of Breast Cancer detected. Please seek immediate consultation with a breast specialist or oncologist for further assessment and treatment planning.",
+    "1": "🩺 Good News: No cancerous patterns detected in this breast scan. Always perform regular checkups and screenings for ongoing health monitoring."
+  },
+  "Hair": {
+    "0": "💇‍♀️ Diagnosis: Alopecia Areata detected. This is an autoimmune condition leading to patchy hair loss. A dermatologist can suggest treatments to stimulate regrowth.",
+    "1": "💇‍♀️ Diagnosis: Head Lice infestation detected. This is a common parasitic condition. Immediate treatment with medicated shampoos is recommended.",
+    "2": "💇‍♀️ Diagnosis: Psoriasis detected on the scalp. A chronic inflammatory condition causing scaly patches. Dermatological treatment can help manage symptoms.",
+    "3": "💇‍♀️ Diagnosis: Folliculitis detected. This is an inflammation of hair follicles due to infection. Treatment may include antibiotics or antifungal medications."
+  },
+  "Pneumonia": {
+    "0": "🫁 Result: No signs of pneumonia detected. If you experience cough, fever, or shortness of breath, consider follow-up with a healthcare provider.",
+    "1": "🫁 Diagnosis: Pneumonia detected. A lung infection that requires prompt medical treatment. Please consult a pulmonologist for appropriate care."
+  },
+  "spine": {
+    "0": "🦴 Focus detected on the L1 vertebra. This area is highlighted for review. No specific abnormality diagnosed—consult your specialist for further insights.",
+    "1": "🦴 Focus detected on the L2 vertebra. This region has been identified in your scan. No abnormalities classified, but further clinical correlation is recommended.",
+    "2": "🦴 Focus detected on the L3 vertebra. While no issue is diagnosed, this area may be of interest to your spine specialist.",
+    "3": "🦴 Focus detected on the L4 vertebra. Seek expert advice if experiencing symptoms like lower back pain or tingling.",
+    "4": "🦴 Focus detected on the L5 vertebra. This vertebra is relevant to your scan. No anomaly diagnosed, but consider expert evaluation.",
+    "5": "🦴 Focus detected on the S1 vertebra. Found in the sacral spine, this area is highlighted. Consult a specialist for any ongoing issues."
+  }
+}

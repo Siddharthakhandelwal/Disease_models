@@ -9,7 +9,7 @@ from tensorflow.keras.preprocessing import image as keras_image
 from ultralytics import YOLO
 import os
 import uuid
-
+import json
 # ------------------ Stage 1: CLIP Classification ------------------
 
 model = None
@@ -28,7 +28,8 @@ KNOWN_IMAGES = {
     "spine": "images/spine.jpg",
     "brain_tumor": "images/brain_tumor.jpg",
     "Pneumonia": "images/pneumonia.jpg",
-    "Hair":"images/hair_image.jpg"
+    "Hair":"images/hair_image.jpg",
+    "Breast":"images/breast.jpeg"
 }
 
 model, processor = load_models()
@@ -86,11 +87,13 @@ YOLO_MODELS = {
     "spine": "spine.pt",
     "brain_tumor": "brain_tumor.pt",
     "Pneumonia": "Pneumonia.pt",
-    "Hair":"Hair.pt"
+    "Hair":"Hair.pt",
+    "Breast":"breast.pt"
 }
 
 
-def yolo_predict(image_path, model_path):
+def yolo_predict(image_path, model_path,best_label):
+    
     try:
         model = YOLO(model_path)
         results = model(image_path, save=True, save_txt=False)
@@ -117,16 +120,18 @@ def yolo_predict(image_path, model_path):
 
                 draw.text((10, 10), "Not fractured", fill="red", font=font)
                 output_image = img.copy()
+                response = "No fracture detected in the X-ray. This result indicates healthy bone structure, but if symptoms persist, consult an orthopedic specialist."
         else:
             # There are detections
             with Image.open(output_img_path) as img:
                 output_image = img.convert("RGB").copy()
                 output_image = img.copy()
+                predicted_class = int(results[0].boxes.cls[0].item())
+                with open("diagnosis_messages.json", "r", encoding="utf-8") as f:
+                    response_texts = json.load(f)
+                    response = response_texts[best_label][str(predicted_class)]
 
-        result_text = f"✅ YOLOv8 detection done using `{os.path.basename(model_path)}`\n"
-        result_text += f"📸 Saved processed image to `{output_img_path}`"
-
-        return output_image, result_text
+        return output_image, response
 
     except Exception as e:
         print(f"Error in YOLO prediction: {e}")
@@ -160,7 +165,7 @@ def pipeline(input_image):
                 output_img, result_text = Dementia(temp_input)
             elif best_label in YOLO_MODELS:
                 model_path = YOLO_MODELS[best_label]
-                output_img, result_text = yolo_predict(temp_input, model_path)
+                output_img, result_text = yolo_predict(temp_input, model_path,best_label)
             else:
                 result_text = f"❌ Unknown image type: {best_label}"
                 output_img = input_image
