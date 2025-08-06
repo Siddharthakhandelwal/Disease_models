@@ -71,13 +71,18 @@ def Dementia(img_path):
 
     prediction = model.predict(img_array)
     predicted_index = np.argmax(prediction[0])
-    predicted_label = class_labels[predicted_index]
-    confidence = prediction[0][predicted_index]
+    # predicted_label = class_labels[predicted_index]
+    # confidence = prediction[0][predicted_index]
 
-    result_text = f"🧠 Alzheimer Stage: {predicted_label} (Confidence: {confidence:.2f})\n\n"
-    result_text += "🔍 All class probabilities:\n"
-    for label, prob in zip(class_labels, prediction[0]):
-        result_text += f"- {label}: {prob:.4f}\n"
+    if predicted_index == 0:
+        result_text = "🧠 Diagnosis: Mild Dementia detected. This early stage of cognitive decline may affect memory and thinking skills slightly. It’s important to consult a neurologist for cognitive testing and to explore strategies or medications that may slow progression."
+    elif predicted_index == 1:
+        result_text= "🧠 Diagnosis: Moderate Dementia detected. This stage typically impacts daily living and communication more significantly. Please seek immediate guidance from a healthcare professional to manage symptoms and plan supportive care."
+    elif predicted_index == 2:
+        result_text="🧠 Good News: No signs of dementia detected. While this scan appears normal, ongoing checkups and healthy lifestyle choices are essential to maintain cognitive function."
+    elif predicted_index == 3:
+        result_text= "🧠 Diagnosis: Very Mild Dementia detected. Subtle signs of memory or focus changes may be present. Early attention to cognitive health can make a meaningful difference—consider a consultation with a neurologist or memory care specialist."
+
     return img, result_text
 
 # ------------------ Stage 2B: YOLOv8 Torch Models ------------------
